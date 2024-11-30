@@ -1,5 +1,7 @@
 ## 面向对象编程(OOP)
 
+---
+
 **什么是面向对象编程(Object Oriented Programming)**
 
 [什么是面向对象-CSDN博客](https://blog.csdn.net/ThinkWon/article/details/100667386)
@@ -8,6 +10,8 @@
 - 面向对象编程 : 把实际问题抽象成对象, 编写然后封装, 用户端只需使用接口即可处理问题
 
 ## 第一个java程序
+
+---
 
 这是一个示例 
 
@@ -31,8 +35,6 @@ public class HelloWorld {
 ​	同时传递形参为**string[]空数组** 和**args**两个参数
 
 ​	由此我们可以窥见java语言的一些特性
-
-
 
 **运行该程序**
 
@@ -73,6 +75,8 @@ Hello World!
 
 
 ## 变量(variable)
+
+---
 
 输出0 - 10 的简单循环程序
 
@@ -178,6 +182,8 @@ public class Main {
 
 
 ### 类型转换
+
+---
 
 java中存在与c相同的类型转换
 
@@ -1769,9 +1775,9 @@ public class OverloadExercise {
 
 
 
-   
-
 ## 可变参数
+
+---
 
 可变参数 允许你在方法中传递不定数量的参数。可变参数的数据类型用三个点（`...`）表示，放置在方法参数的类型之前。**可变参数实际上是一个数组，允许你传递任意数量的参数值**。
 
@@ -1794,7 +1800,7 @@ public int sum(int... nums) {
 
 1. 可变参数的实参**可以为0或任意多个**
 2. 可变参数的**本质是数组**
-3. 可变参数可以和普通参数一起出现,但是可变参数**必须放在形参列表的最后**
+3. 可变参数可以和普通参数一起出现,但是可变参数 ==必须放在形参列表的最后==
 4. 一个形参列表中**只能有一个**可变参数
 
 
@@ -1802,6 +1808,8 @@ public int sum(int... nums) {
 
 
 ## 变量作用域
+
+---
 
 全局变量&局部变量
 
@@ -1870,6 +1878,8 @@ class Person {
 
 ## 构造器(constructor)
 
+---
+
 构造器, 又叫构造方法/构造函数,创建在同名类中,构造器用于**初始化被创建的实例** , 其语法与方法类似
 
 ```java
@@ -1878,7 +1888,7 @@ class Person {
 }
 ```
 
-**使用要点:**
+[使用细节]
 
 1. 构造器/构造方法 名称必须**与所属类名相同**
 2. 构造器创建在同名类里面,可以看做是一个特殊的方法
@@ -1887,6 +1897,8 @@ class Person {
 5. 一个类中可以有多个构造器,即构造器重载,使用规范参考 [**方法重载**]
 6. 若创建的类中没有构造器,则程序会生成一个[无参构造器/默认构造方法], 即new一个实例时 类名() `如 Person()` , 显示声明的构造器会覆盖无参构造器,若仍想使用,需要自己创建(即重载)
 7. 无参构造器也可以自己声明,此时在构造器内设定的值就是创建实例的默认值
+
+示例: 
 
 ```java
 public class Constructor {
@@ -1921,6 +1933,12 @@ public class Constructor {
 	}
 }
 ```
+
+- 子类的构造器
+
+当一个类继承自父类时, 在子类构造器中要显式或隐式的使用super()去初始化父类构造器, 这是java类加载的内存机制 , 详情见java三大特性---创建子类对象的内存机制
+
+
 
 
 
@@ -2416,7 +2434,7 @@ public class Mainprogramme {
 
 ---
 
-### super关键字详解
+### **super**关键字详解
 
 super是一个和this相似的关键字, this指代当前引用对象, super则指代当前子类的**直接父类**对象
 
@@ -2445,9 +2463,13 @@ super是一个和this相似的关键字, this指代当前引用对象, super则�
 
 <img src="https://pic.imgdb.cn/item/66c06f19d9c307b7e916cc11.png">
 
----
+
+
+
 
 ### 方法重写(override)
+
+---
 
 当子类中有一个方法名称和形参列表都与父类相同的方法时, 子类的方法会覆盖父类的方法, 即方法重写
 
@@ -3026,6 +3048,8 @@ debugger支持动态下断点, 即debug时也可以下断点(至少有一处才�
 
 ## Static 静态成员
 
+---
+
 Static关键字不能修饰类名 , 可以修饰成员方法 , 成员方法,  被static修饰的成员变量和成员方法**独立于该类的任何对象**
 
 ==它不属于某个对象实例，而属于整个类==
@@ -3187,6 +3211,8 @@ final的不可重写性质与abstract刚好相反
 
 ## interface 接口
 
+---
+
 ### 接口的基本知识
 
 > **此接口和网络接口不是一个概念, 一般的接口更多的指网络通信接口**
@@ -3206,7 +3232,7 @@ final的不可重写性质与abstract刚好相反
 - **(重点)** *一个普通类可以同时实现多个接口(但是一个类只能继承一个类) 使用逗号隔开* `class implIAA implements IAA, IAB ` 
 - 接口的成员属性必须是 `public static final` (可省略) 必须初始化变量; 调用方法为`[接口名/子接口名/实现接口的子类名].[属性名]`
 - 接口成员方法默认是` public 和 abstract`, 可以省略, 方法可以被private修饰, 表示只允许此接口使用, 此时必须有方法体
-- 接口不能继承自其它类, 但是可以继承自其它接口(允许多继承)
+- 接口不能继承自其它类, 但是可以继承自其它接口 (允许多继承)
 
 
 
@@ -3266,7 +3292,7 @@ class implIAA implements IAA, IAB  { //实现接口IAA,IAB
 
 - 接口与抽象类之间的关系
 
-接口不是类, 抽象类是类, 因此接口相比于抽象类拥有 多继承机制
+接口不是类, 抽象类是类, 因此接口相比于抽象类拥有 **多继承机制**
 
 接口在功能实现上比抽象类更简洁。只有抽象方法和静态变量存在，没有构造方法，也不能有静态代码块以及静态方法等，所有的实现都在其实现类中完成。
 
@@ -3375,6 +3401,8 @@ class implIAB implements IAA,IAB {
 
 ## **类加载机制**
 
+---
+
 [参考文献 -- 类加载过程](https://javaguide.cn/java/jvm/class-loading-process.html#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B)
 
 ### 类的生命周期
@@ -3415,6 +3443,8 @@ class implIAB implements IAA,IAB {
 
 
 ## 内部类 (InnerClass)
+
+---
 
 在Java 中，可以**将一个类定义在另一个类里面或者一个方法里面，这样的类称为内部类**。与之相对的是外部类(OuterClass);  广泛意义上的内部类一般来说包括这四种：静态内部类、匿名内部类、成员内部类和局部内部类
 
@@ -3694,6 +3724,8 @@ public class Other {
 
 ## 枚举类
 
+---
+
 [使用细节]
 
 - 创建枚举类不能跟继承，因为它有一个隐式的继承自Enum类
@@ -3734,8 +3766,6 @@ enum Day {
 
 
 
-
-
 枚举类的调用
 
 ```java
@@ -3761,6 +3791,8 @@ public class Test
 
 ## 注解Annotation
 
+---
+
 以下三种注解类都是被@interface修饰的**注解类**
 
 - @Override 注解
@@ -3778,8 +3810,6 @@ public @interface Override {
 其作用在于做语法校验，加上@override修饰后如果不构成重写，则无法通过编译。
 
 同时，显示声明也可以提醒程序员这里的方法需要重写
-
-
 
 - @Deprecated
 
@@ -3829,6 +3859,214 @@ public @interface Deprecated {
 
 ## 异常
 
+---
+
+当程序的某一段出现错误，使用异常处理机制可以避免程序崩溃，可以异常类Exception捕获出现的异常，并进行相应的处理使得程序可以继续运行
+
+### 异常的分类
+
+1. Error
+
+严重的程序错误会导致系统崩溃，不能通过异常处理解决，如：栈溢出、内存泄漏
+
+2. Exception
+
+因编程错误导致的部分异常，可以使用异常捕获去处理和解决，如：空指针、文件读取失败、网络中断
+
+Exception分为两大类：**运行时异常**`RuntimeException` 和 **编译时异常** 。	以下讨论的都是Exception异常
+
+> 注: 语法错误和部分逻辑错误不属于异常的范畴
+
+<img src="https://pic.imgdb.cn/item/6746d462d0e0a243d4d1e914.png">
+
+异常类的关系图如上所示
+
+所有异常(exception和error)的直接父类是`Throwable` , 顶级父类是`Serializable`
+
+### RuntimeException 五种常见类型
+
+- NullPointerException   空指针异常
+- ArithmeticException  算数异常(即由数学运算错误引起的异常)
+- ArrayIndexOutOfBounds   数组越界异常(索引为负或大于等于length)
+- ClassCastException   类转型异常(向上或向下转型出现错误)
+- NumberFormatException  数字格式异常(如字符串字母转型整数出现错误)
+
+### 常见编译异常
+
+<img src="https://pic.imgdb.cn/item/6746dd18d0e0a243d4d1ed3a.png">
+
+
+
+### 异常处理 tcf
+
+- **try-catch-finally** 基本格式
+
+```java
+try {
+  //正常语句
+} catch([异常类] [类名]) {
+  //捕获并处理异常操作
+} finally {
+  //不论是否异常都执行,且一定最后执行
+}
+```
+
+如:
+
+```java
+/*异常处理*/
+public class exception {
+    public static void main(String[] args) {
+        try {
+            String str = "abc";
+            System.out.println(Integer.parseInt(str)); 
+            //将字符串转换成整数,如果不能转换会抛出转型异常
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("finally run");
+        }
+    }
+}
+```
+
+<img src="https://pic.imgdb.cn/item/6746e47dd0e0a243d4d1f058.png" style="zoom:80%;" >
+
+❤例题1:	下列代码的执行顺序和输出结果
+
+```c
+public class ExceptionExe01 {
+    public static int method() {
+        int i = 1;
+        try {
+            i++;
+            String[] names = new String[3];
+            if (names[1].equals("tom")) { //空指针错误,跳出try
+                System.out.println(names[1]);
+            } else {
+                names[3] = "hspedu";
+            }
+            return 1;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 2;
+        } catch (NullPointerException e) { //进入空指针异常catch块
+            return ++i; //执行
+        } finally { //finally块最后执行
+            ++i; 
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(method());
+    }
+}
+```
+
+> 分析:	这里在进入catch后执行到`return i++` , 正常情况下程序遇到return语句就会返回并退出, 但是由于finally块还未执行, jvm程序在这里的做法是----**使用临时变量temp存储i++的结果 i = 3, 然后执行finally语句, 由于finally中没有return, 在执行结束后返回catch块, 此时的变量i仍是临时变量temp中保存的i = 3**, 也就是说, 程序最后的结果是输出 i=3
+
+通过本题得知: **如果catch中存在结束程序的语句, 而finally代码块存在且尚未执行, 程序会将catch中的结果以临时变量的形式存储, 并在必要时回溯并返回该值** , 当catch和finally都有return语句时，只执行finally中的return，因为finally最后必须执行
+
+
+
+### tcf使用细节
+
+1. 在idea中, 选中认为会出现异常的语句，按`ctrl+alt+t` , 选择try catch语句，即可自动生成该格式
+2. try中的语句若有异常，则执行到语句就会转到catch中，try中剩下的语句不再执行
+3. 若没有异常，则将try中语句执行完，不会执行catch中的语句
+4. finally一般用于关闭资源，用不到的时候可以不写这部分，即只有try-catch
+5. catch部分可以不写，即只有try-finally，这么做的话，因为没有catch语句，即使获取错误也不会处理，而是直接报错，其目的就在于在报错前执行finally语句
+
+6. 可调用多个catch来防止多重异常，**但父类Exception必须写在最后一个，且碰到一个错误就会返回异常，并不会将所有错误检测出，**相当于建立了多重墙，并返回首个异常
+
+
+
+### 异常处理 throws
+
+- **throws** 关键字用于在方法声明中指定该方法可能抛出的异常。当方法内部因为运行错误抛出指定类型的异常时，该异常会被传递给调用该方法的代码，该代码中必须设置相应的异常处理块(当异常为编译异常时, 见下文)
+- 可以抛出多个异常, 包括父类Exception
+
+```java
+public void readFile(String filePath) throws IOException, FileNotFoundException {
+    //throws跟在方法声明头的后面
+  BufferedReader reader = new BufferedReader(new FileReader(filePath));
+  String line = reader.readLine();
+  while (line != null) {
+    System.out.println(line);
+    line = reader.readLine();
+  }
+  reader.close();
+} //当出现异常时,停止方法内的语句,并返回异常类对象给调用代码
+```
+
+
+
+### throws使用细节
+
+1. 对于编译异常, 必须更改代码或显式的调用throws, 才能通过编译
+2. 对于运行异常, jvm程序中隐式执行了throws, 也就是不声明throws, 程序运行异常也会在终端输出(有默认处理)
+3. 当子类重写了父类的方法并且父类方法显式的抛出异常时，子类抛出的异常类型必须和父类相同，或者是父类异常类型的子类(子类可以不写throws, 不抛出异常)
+4. throws 和 tcf , 一个是检测到并抛出自己不处理, 一个是检测到并自己内部处理
+
+
+
+### 自定义异常类
+
+- 继承自Exception , 则认为是编译异常
+- 继承自RuntimeException , 则认为是运行异常(用的更多)
+
+```java
+class AgeExecption extends RuntimeException{ 
+    public AgeExecption(String message) { //构造器
+        super(message); 
+        /*//显式初始化父类
+        因为每个异常类都需要一个消息字符串来描述异常的原因，
+        这个字符串最初是在Throwable类中定义的。*/
+    }
+}
+
+```
+
+
+
+## 包装类(wrapper)
+
+---
+
+8种基本数据类型对应的包装类名
+
+| 基本数据类型 |             包装类型              |
+| :----------: | :-------------------------------: |
+|     byte     |   java.lang.Byte（父类Number）    |
+|    short     |   java.lang.Short（父类Number）   |
+|     int      |  java.lang.Integer（父类Number）  |
+|     long     |   java.lang.Long（父类Number）    |
+|    float     |   java.lang.Float（父类Number）   |
+|    double    |  java.lang.Double（父类Number）   |
+|   boolean    |  java.lang.Boolean（父类Object）  |
+|     char     | java.lang.Character（父类Object） |
+
+包装类属于**引用数据类型**(和string一样), 具有类的特性, 封装了很多操作方法
+
+Character 和 Boolean 是直接继承的Object类，实现了`Serializable`接口
+
+其余六种继承Number类，实现的`Comparable`接口（Number类也实现了Serializable接口）
+
+<img src="https://pic.imgdb.cn/item/67472a7bd0e0a243d4d2f226.png" style="zoom:67%;" >
+
+
+
+### 基本数据类型和包装类转换
+
+* 转换又称为**装箱**（基本数据类型->包装类）/ **拆箱**（包装类->基本数据类型）
+* 转换分为手动和自动两种形式，现在一般用自动，自动的底层实现就是手动
+
+
+
+
+
+
+
+
 
 
 
@@ -3837,6 +4075,8 @@ public @interface Deprecated {
 
 
 ## 泛型
+
+---
 
 >  泛型的作用
 >
@@ -3926,6 +4166,8 @@ public static void main(String[] args) {
 
 ## Java设计模式
 
+---
+
 **什么是设计模式?**
 
 设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性
@@ -3988,4 +4230,131 @@ public class Singleton {
 ```
 
 
+
+
+
+## I/O流
+
+---
+
+**输入流**(Inout Stream)与 **输出流**(Output Stream)合称为 **数据流**(Data Stream)
+
+输入输出流的来源和接收者可以是文件、内存、网络连接等
+
+写入数据的原理：Java程序→JVM→OS→OS调用写入数据的方法→写入成功→手动释放OS资源
+
+读取数据的原理：Java程序→JVM→OS→OS调用读取数据的方法→读取成功→手动释放OS资源
+
+
+
+### 文件
+
+- 创建文件
+
+文件对象 `File` (位于java.io包内) , 封装了文件的相关操作, 具有多个构造器
+
+<img src="https://pic.imgdb.cn/item/674b18e3d0e0a243d4db79f3.png" style="zoom: 80%;" >
+
+```java
+public File(String pathname);	//根据绝对路径创建文件(包含要创建的文件名)
+public File(File parent, String child);	//根据父文件和相对路径创建
+public File(String parent, String child); //根据父文件和子文件相对路径创建
+```
+
+代码演示
+
+```java
+import java.io.File; //包名
+
+//1.根据子文件的绝对路径创建
+public void createFile_1() {
+    String path = "C:\\Users\\12275\\Documents\\file1.txt"; //需要指定子文件名
+    File file = new File(path);
+    //创建文件的操作强制要求处理异常,否则不能通过编译
+    try {
+        file.createNewFile();
+        System.out.println("File Created");
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+}
+
+//2.根据父文件目录定位和子文件名创建
+public void createFile_2() {
+    File parent = new File("C:\\Users\\12275\\Documents\\"); //注意末尾应该加'\\'
+    //不指定文件名,不会创建文件,但是相当于打开了指定工作目录
+    //当然也可以借助一个实际的文件定位工作目录,然后创建子文件
+    String path = "file2.txt";
+    File file = new File(parent, path);
+    try {
+        file.createNewFile();
+        System.out.println("File Created");
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+}
+
+//3.根据父目录和子目录创建文件
+public void createFile_3() {
+    String parent = "C:\\Users\\12275\\Documents\\";
+    String son = "file3.txt";
+    File file = new File(parent, son);
+    try {
+        file.createNewFile();
+        System.out.println("File Created");
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+}
+```
+
+
+
+- 获取文件信息
+
+File类提供了很多文件操作方法, 在需要使用时可以查表
+
+```java
+public void getInfo(File file) {
+    file = new File("C:\\Users\\12275\\Documents\\file1.txt");
+
+    System.out.println("获取文件名: " + file.getName());
+    System.out.println("获取绝对路径: " + file.getAbsolutePath());
+    System.out.println("获取父目录: " + file.getParent());
+    System.out.println("获取文件大小(字节): " + file.length());
+    System.out.println("文件是否存在: " + file.exists());
+    System.out.println("判断是否是文件: " + file.isFile());
+    System.out.println("判断是否是目录: " + file.isDirectory());
+}
+```
+
+输出结果
+
+<img src="https://pic.imgdb.cn/item/674b2b7ed0e0a243d4db7de9.png" style="zoom: 80%; float: left;" >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 网络编程
+
+---
+
+课程跳转 https://www.bilibili.com/video/BV1fh411y7R8?vd_source=98d8086c38b750b0ce152d6d7c45607f&spm_id_from=333.788.videopod.episodes&p=666
 
