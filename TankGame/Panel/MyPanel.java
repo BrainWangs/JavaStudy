@@ -4,40 +4,73 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import draw.TankGame.Tank.Tank;
+import java.util.Vector;
+
+import draw.TankGame.Tank.Bullet;
+import draw.TankGame.Tank.EnemyTank;
 import draw.TankGame.Tank.Hero;
 
-/**
- *
- * 下面是游戏背景绘图区域
- */
 
-public class MyPanel extends JPanel implements KeyListener {
+public class MyPanel extends JPanel implements KeyListener , Runnable{
+    public static int Width = 1000;
+    public static int Height = 750;
+    public static int enemyTankNum = 5;
 
-    Hero hero = new Hero(100, 100, 0, 0, 10);
-    Tank enemyTank01 = new Tank(300, 300, 0, 1, 10);
+
+    Hero hero = null;
+    Vector<EnemyTank> enemyTanks = new Vector<>();
+
+
+    // 构造器初始化坦克
+    public MyPanel() {
+        // 创建玩家坦克
+        hero = new Hero(300, 300, 0, 0, 10);
+        // 创建敌人坦克
+        EnemyTank enemyTank = null;
+        // 利用循环创建敌人坦克, 加入到敌人坦克集合中
+        for (int i = 0; i < enemyTankNum; i++) {
+            enemyTank = new EnemyTank(100 * (i + 1), 100, 2, 1, 10);
+            enemyTanks.add(enemyTank);
+            // 创建敌人坦克的子弹线程
+            Bullet bullet = new Bullet(enemyTank.getX() + 20, enemyTank.getY() + 20, enemyTank.getDir());
+            enemyTank.enemyBullet.add(bullet);
+            // 启动子弹线程
+            new Thread(bullet).start();
+        }
+    }
+
 
     // 重写Paint方法
     @Override
     public void paint(Graphics g) {
+        // 绘制窗口
         super.paint(g);
-        g.fillRect(0, 0, 1000, 750); // 设置窗口大小
-        g.setColor(Color.BLACK); // 设置颜色
-
-
+        // 设置窗口大小
+        g.fillRect(0, 0, Width, Height);
+        // 设置颜色
+        g.setColor(Color.BLACK);
         // 通过创建对象生成坦克
-
         drawTank(hero.getX(), hero.getY(), g, hero.getDir(), hero.getType());
-        drawTank(enemyTank01.getX(), enemyTank01.getY(), g, enemyTank01.getDir(), enemyTank01.getType());
+        // 遍历绘制敌人坦克集合
+        for (int i = 0; i < enemyTankNum; i++) {
+            drawTank(enemyTanks.get(i).getX(), enemyTanks.get(i).getY(), g, enemyTanks.get(i).getDir(), 1);
+        }
+        // 绘制玩家坦克的子弹
+        if (hero.getLive() && hero.bullet != null && hero.bullet.getLive()) {
+            g.fillRect(hero.bullet.getX(), hero.bullet.getY(), 2, 2);
+        }
+        // 绘制敌人坦克的子弹
+        for (int i = 0; i < enemyTankNum; i++) {
+            if (enemyTanks.get(i).getLive()) {
+                for (int j = 0; j < enemyTanks.get(i).enemyBullet.size(); j++) {
+                    g.fillRect(enemyTanks.get(i).enemyBullet.get(j).getX(), enemyTanks.get(i).enemyBullet.get(j).getY(), 2, 2);
+                }
+            }
+        }
     }
 
     /**
      * 编写生成坦克图案的方法
-     * @param x         坦克的横坐标
-     * @param y         坦克的纵坐标
-     * @param g         画笔
-     * @param direction 坦克的方向(0: 向上 1: 向右 2: 向下 3: 向左)
-     * @param type      坦克的类型(0: 玩家坦克 1: 敌人坦克)
      */
     public void drawTank(int x, int y, Graphics g, int direction, int type) {
         // 绘制坦克颜色
@@ -115,6 +148,12 @@ public class MyPanel extends JPanel implements KeyListener {
             default:
                 break;
         }
+
+
+        if (e.getKeyChar() == 'j') {
+            hero.heroShot();
+        }
+
         this.repaint();
         /*注意repaint()方法会重新运行paint()方法*/
 
@@ -122,5 +161,18 @@ public class MyPanel extends JPanel implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+
+
+    @Override
+    public void run() {
+        while (true) {
+            this.repaint();
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

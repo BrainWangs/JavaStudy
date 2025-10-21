@@ -19,6 +19,8 @@ public class Main extends JFrame {
         this.setSize(1000, 750);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+
+        new Thread(mp).start();
     }
 
 }

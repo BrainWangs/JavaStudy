@@ -6,6 +6,7 @@ public class Tank {
     private int dir;
     private int type;
     private int speed;
+    private boolean isLive = true;
 
     public Tank(int x, int y, int dir, int type, int speed) {
         this.x = x;
@@ -55,6 +56,14 @@ public class Tank {
         this.speed = speed;
     }
 
+    public boolean getLive() {
+        return isLive;
+    }
+
+    public void setLive(boolean live) {
+        isLive = live;
+    }
+
     public void move(int dir) {
         switch (dir) {
             case 0:
@@ -74,4 +83,7 @@ public class Tank {
                 break;
         }
     }
+
+
+
 }
