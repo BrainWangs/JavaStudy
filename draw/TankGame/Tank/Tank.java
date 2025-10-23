@@ -1,4 +1,4 @@
-package draw.TankGame.Tank;
+package com.draw.TankGame.Tank;
 
 public class Tank {
     private int x;

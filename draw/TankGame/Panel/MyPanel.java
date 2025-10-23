@@ -1,28 +1,29 @@
-package draw.TankGame.Panel;
+package com.draw.TankGame.Panel;
+
+import com.draw.TankGame.Tank.Bullet;
+import com.draw.TankGame.Tank.EnemyTank;
+import com.draw.TankGame.Tank.Hero;
+import com.draw.TankGame.Tank.Tank;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Vector;
-
-import draw.TankGame.Tank.Bullet;
-import draw.TankGame.Tank.EnemyTank;
-import draw.TankGame.Tank.Hero;
-import draw.TankGame.Tank.Tank;
-
 
 public class MyPanel extends JPanel implements KeyListener , Runnable{
     public static int Width = 1000;
     public static int Height = 750;
     public static int enemyTankNum = 5;
 
-
     Hero hero = null;
     Vector<EnemyTank> enemyTanks = new Vector<>();
+    ArrayList<Bomb> bombs = new ArrayList<>();
 
-
-    // 构造器初始化坦克
+    /**
+     * 在构造器内初始化后面会用到的一些集合
+     */
     public MyPanel() {
         // 创建玩家坦克
         hero = new Hero(300, 300, 0, 0, 10);
@@ -38,6 +39,8 @@ public class MyPanel extends JPanel implements KeyListener , Runnable{
             // 启动子弹线程
             new Thread(bullet).start();
         }
+        // 初始化爆炸图片
+        Bomb.imageInit();
     }
 
 
@@ -69,6 +72,15 @@ public class MyPanel extends JPanel implements KeyListener , Runnable{
                 for (int j = 0; j < enemyTanks.get(i).enemyBullet.size(); j++) {
                     g.fillRect(enemyTanks.get(i).enemyBullet.get(j).getX(), enemyTanks.get(i).enemyBullet.get(j).getY(), 2, 2);
                 }
+            }
+        }
+
+        for (int i = 0; i < bombs.size(); i++) {
+            Bomb bomb = bombs.get(i);
+            if (bomb.getLive()) {
+                g.drawImage(Bomb.getImage(bomb), bomb.getX(), bomb.getY(), 60, 60, this);
+            } else {
+                bombs.remove(i);
             }
         }
     }
@@ -190,7 +202,6 @@ public class MyPanel extends JPanel implements KeyListener , Runnable{
      * 思路: 遍历所有玩家坦克的子弹, 遍历所有敌人坦克, 检测子弹坐标是否在敌人坦克区域内
      */
     public void hitEnemyTank() {
-        // 使用传统for循环倒序遍历避免索引变化导致的问题
         for (int i = 0; i < hero.heroBullet.size(); i++) {
             Bullet bullet = hero.heroBullet.get(i);
             for (int j = 0; j < enemyTanks.size(); j++) {
@@ -200,6 +211,9 @@ public class MyPanel extends JPanel implements KeyListener , Runnable{
                     if (Bullet.checkHit(bullet, enemyTank)) {
                         // 从集合中删除这个被击中的坦克对象
                         enemyTanks.remove(j);
+                        // 添加bomb对象 绘制爆炸效果
+                        bombs.add(new Bomb(enemyTank.getX(), enemyTank.getY()));
+
                     }
                 }
             }

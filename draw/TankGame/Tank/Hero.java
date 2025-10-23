@@ -1,6 +1,4 @@
-package draw.TankGame.Tank;
-
-import draw.TankGame.Panel.MyPanel;
+package com.draw.TankGame.Tank;
 
 import java.util.Vector;
 

@@ -1,12 +1,10 @@
-package draw.TankGame;
+package com.draw.TankGame;
 
-import draw.TankGame.Panel.MyPanel;
+import com.draw.TankGame.Panel.MyPanel;
 
 import javax.swing.*;
 
 public class Main extends JFrame {
-
-
     public static void main(String[] args) {
         new Main();
     }

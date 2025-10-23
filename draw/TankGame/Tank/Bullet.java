@@ -1,7 +1,7 @@
-package draw.TankGame.Tank;
+package com.draw.TankGame.Tank;
 
-import static draw.TankGame.Panel.MyPanel.Height;
-import static draw.TankGame.Panel.MyPanel.Width;
+import static com.draw.TankGame.Panel.MyPanel.Height;
+import static com.draw.TankGame.Panel.MyPanel.Width;
 
 /*绘制子弹的移动效果*/
 public class Bullet implements Runnable{
